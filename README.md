@@ -47,6 +47,10 @@ CodeSandbox demos:
 - [Use with Material-UI TextField component](https://codesandbox.io/s/react-dropzone-textarea-material-ui-ytduo)
 - [Drop spreadsheet and convert to CSV](https://codesandbox.io/s/react-dropzone-textarea-spreadsheet-ersgp)
 
+Used on real sites:
+
+- [diff-text](https://diff-text.netlify.app/) (demo of [diff-text](https://github.com/andygock/diff-text) web app)
+
 ## Building
 
 Install dependencies
