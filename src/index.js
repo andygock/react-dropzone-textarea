@@ -12,7 +12,7 @@ const DropzoneTextArea = ({
   textareaProps,
   rootProps,
   customTextConverter,
-  component = 'textarea',
+  component,
   onError,
 
   // eslint-disable-next-line no-unused-vars
@@ -92,17 +92,21 @@ const DropzoneTextArea = ({
 DropzoneTextArea.propTypes = {
   value: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
-  onDropRead: PropTypes.string,
+  onDropRead: PropTypes.func,
   textareaProps: PropTypes.object,
   rootProps: PropTypes.object,
   customTextConverter: PropTypes.func,
-  component: PropTypes.oneOfType(PropTypes.string, PropTypes.object),
+  component: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.node,
+    PropTypes.func,
+  ]),
   onError: PropTypes.func,
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node,
   ]),
-  otherProps: PropTypes.arrayOf(PropTypes.any),
+  otherProps: PropTypes.arrayOf(PropTypes.object),
 };
 
 DropzoneTextArea.defaultProps = {
@@ -110,6 +114,7 @@ DropzoneTextArea.defaultProps = {
     console.error(msg);
     window.alert(msg);
   },
+  component: 'textarea',
 };
 
 export default DropzoneTextArea;
