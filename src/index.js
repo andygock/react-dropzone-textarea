@@ -3,8 +3,6 @@ import { useDropzone } from 'react-dropzone';
 import { isBinary } from 'istextorbinary';
 import PropTypes from 'prop-types';
 
-const colorActive = 'lightgreen';
-
 const DropzoneTextArea = ({
   value,
   onChange,
@@ -18,18 +16,33 @@ const DropzoneTextArea = ({
   // eslint-disable-next-line no-unused-vars
   children,
 
-  ...otherProps
+  dropzoneProps,
+  colorActive,
 }) => {
+  const onDropRejected = useCallback((files) => {
+    // console.error(files, event);
+    const errors = files.map((file) => file.errors);
+    const message = errors[0].map((error) => error.message).join('. ');
+    onError(message);
+  });
+
   const onDrop = useCallback(
     (acceptedFiles) => {
-      if (acceptedFiles.length > 1) {
-        // only supports reading one file into a textarea
-        onError('Dropping of more than one file not supported');
+      // dropping of multiple files is already handled by onDropRejected()
+
+      if (acceptedFiles.length === 0) {
+        // note this callback is run even when no files are accepted / all rejected
+        // do nothing in such case
         return;
       }
 
       const file = acceptedFiles[0];
       const reader = new FileReader();
+
+      reader.onerror = () => {
+        onError('FileReader error');
+        reader.abort();
+      };
 
       if (customTextConverter) {
         // use alternate processor e.g processing binary files
@@ -39,12 +52,15 @@ const DropzoneTextArea = ({
             customTextConverter &&
             typeof customTextConverter === 'function'
           ) {
-            customTextConverter(resultAsArrayBuffer).then((text) => {
+            customTextConverter(resultAsArrayBuffer, { file }).then((text) => {
               onDropRead(text);
             });
           }
         };
-        reader.readAsArrayBuffer(file);
+
+        if (file) {
+          reader.readAsArrayBuffer(file);
+        }
       } else {
         // read file as text file
         reader.onloadend = () => {
@@ -69,9 +85,11 @@ const DropzoneTextArea = ({
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
+    onDropRejected,
     noKeyboard: true,
     noClick: true,
-    ...otherProps,
+    multiple: false,
+    ...dropzoneProps,
   });
 
   const targetTextarea = React.createElement(component, {
@@ -106,7 +124,8 @@ DropzoneTextArea.propTypes = {
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node,
   ]),
-  otherProps: PropTypes.arrayOf(PropTypes.object),
+  dropzoneProps: PropTypes.object,
+  colorActive: PropTypes.string,
 };
 
 DropzoneTextArea.defaultProps = {
@@ -115,6 +134,7 @@ DropzoneTextArea.defaultProps = {
     window.alert(msg);
   },
   component: 'textarea',
+  colorActive: 'lime',
 };
 
 export default DropzoneTextArea;
