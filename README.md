@@ -1,6 +1,6 @@
 # React Dropzone Textarea
 
-A React component of a textarea element. Drop text files onto the element and load file contents as textarea's value. Essentially, it's a textarea wrapper with [react-dropzone](https://github.com/react-dropzone/react-dropzone).
+A React component of a textarea element. Drop a text file onto the element and load file contents as textarea's value. Essentially, it's a textarea wrapper with [react-dropzone](https://github.com/react-dropzone/react-dropzone).
 
 It can be used with the generic HTML5 `<textarea>` element, or with any other React textarea like component which supports a `value` and `onChange` prop. Tested with [BlueprintJS](https://blueprintjs.com/docs/#core/components/text-inputs.text-area) but should work with other libraries too.
 
@@ -11,23 +11,41 @@ It can be used with the generic HTML5 `<textarea>` element, or with any other Re
 
 ## Usage with hooks
 
+When a text file dropped onto the textarea component, `onDropRead` callback is fired which can be used to subsequently set the textarea's value.
+
 Basic example
 
 ```js
-import React from 'react';
-import DropTextarea from 'react-dropzone-textarea';
+import React from "react";
+import Textarea from "react-dropzone-textarea";
 
-export default () => {
-    const [value, setValue] = React.useState("");
-    return (
-        <DropTextarea value={value} onChange={(e)=>setValue(e.target.value)} />
-    );
-};
+export default function App() {
+  const [value, setValue] = React.useState("");
+  return (
+    <div className="App">
+      <Textarea
+        value={value}
+        onChange={e => setValue(e.target.value)}
+        onDropRead={text => setValue(text)}
+        textareaProps={{
+          cols: 80,
+          rows: 25,
+          placeholder: "Drop one text file here..."
+        }}
+      />
+    </div>
+  );
+}
 ```
 
 You can still edit the contents of the textarea's content further after a drop operation.
 
-Live demo at [CodeSandbox](https://codesandbox.io/s/react-dropzone-textarea-b84fu).
+CodeSandbox demos:
+
+- [Use with generic HTML `<textarea>`](https://codesandbox.io/s/react-dropzone-textarea-simple-b84fu).
+- [Use with BlueprintJS TextArea component](https://codesandbox.io/s/react-dropzone-textarea-blueprintjs-36oc7)
+- [Use with Material-UI TextField component](https://codesandbox.io/s/react-dropzone-textarea-material-ui-ytduo)
+- [Drop spreadsheet and convert to CSV](https://codesandbox.io/s/react-dropzone-textarea-spreadsheet-ersgp)
 
 ## Building
 
