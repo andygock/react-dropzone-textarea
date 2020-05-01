@@ -38,7 +38,7 @@ export default function App() {
 }
 ```
 
-You can still edit the contents of the textarea's content further after a drop operation.
+You can still edit the textarea's content further after a drop operation.
 
 CodeSandbox demos:
 
