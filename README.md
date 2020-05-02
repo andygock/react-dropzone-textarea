@@ -45,6 +45,7 @@ CodeSandbox demos:
 - [Use with generic HTML `<textarea>`](https://codesandbox.io/s/react-dropzone-textarea-simple-b84fu).
 - [Use with BlueprintJS TextArea component](https://codesandbox.io/s/react-dropzone-textarea-blueprintjs-36oc7)
 - [Use with Material-UI TextField component](https://codesandbox.io/s/react-dropzone-textarea-material-ui-ytduo)
+- [Use with Ant Design TextArea component](https://codesandbox.io/s/react-dropzone-textarea-antd-knp32)
 - [Drop spreadsheet and convert to CSV](https://codesandbox.io/s/react-dropzone-textarea-spreadsheet-ersgp)
 
 Used on real sites:
