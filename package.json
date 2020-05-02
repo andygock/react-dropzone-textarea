@@ -17,6 +17,7 @@
   "author": "Andy Gock <andy@gock.net>",
   "license": "MIT",
   "dependencies": {
+    "classnames": "^2.2.6",
     "istextorbinary": "^3.3.0",
     "react-dropzone": "^11.0.1"
   },

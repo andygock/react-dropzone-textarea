@@ -2,6 +2,7 @@ import React, { useCallback } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { isBinary } from 'istextorbinary';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 
 const DropzoneTextArea = ({
   value,
@@ -18,6 +19,7 @@ const DropzoneTextArea = ({
 
   dropzoneProps,
   colorActive,
+  classNameIsActive,
 }) => {
   const onDropRejected = useCallback((files) => {
     // console.error(files, event);
@@ -92,10 +94,27 @@ const DropzoneTextArea = ({
     ...dropzoneProps,
   });
 
+  //
+  // configure 'onDropActive' styling
+  // with classNameIsActive prop given, this will be set when onDropActive
+  // otherwise we set the style with a backgroundColor
+  // this is set on the target component
+  //
+  let style = {};
+  let className = {};
+  if (classNameIsActive !== '') {
+    className = classNames({
+      [classNameIsActive]: Boolean(isDragActive),
+    });
+  } else {
+    style = { backgroundColor: isDragActive ? colorActive : 'inherit' };
+  }
+
   const targetTextarea = React.createElement(component, {
     value,
     onChange,
-    style: { backgroundColor: isDragActive ? colorActive : 'inherit' },
+    ...{ style },
+    ...{ className },
     ...textareaProps,
   });
 
@@ -126,6 +145,7 @@ DropzoneTextArea.propTypes = {
   ]),
   dropzoneProps: PropTypes.object,
   colorActive: PropTypes.string,
+  classNameIsActive: PropTypes.string,
 };
 
 DropzoneTextArea.defaultProps = {
@@ -135,6 +155,7 @@ DropzoneTextArea.defaultProps = {
   },
   component: 'textarea',
   colorActive: 'lime',
+  classNameIsActive: '',
 };
 
 export default DropzoneTextArea;
