@@ -1,5 +1,6 @@
 {
   "name": "react-dropzone-textarea",
+  "type": "module",
   "version": "1.1.4",
   "description": "Use react-dropzone to load a text file into a textarea element",
   "main": "./dist/index.js",
@@ -18,8 +19,8 @@
   "license": "MIT",
   "dependencies": {
     "classnames": "^2.3.2",
-    "istextorbinary": "^3.3.0",
-    "react-dropzone": "^11.7.1"
+    "istextorbinary": "^6.0.0",
+    "react-dropzone": "^14.2.3"
   },
   "devDependencies": {
     "@babel/core": "^7.19.6",
@@ -27,17 +28,15 @@
     "@babel/plugin-transform-react-jsx": "^7.19.0",
     "@babel/preset-env": "^7.19.4",
     "@babel/preset-react": "^7.18.6",
-    "@rollup/plugin-babel": "^5.3.1",
-    "@rollup/plugin-commonjs": "^11.1.0",
-    "@rollup/plugin-node-resolve": "^7.1.3",
-    "eslint": "^6.8.0",
+    "@rollup/plugin-babel": "^6.0.2",
+    "@rollup/plugin-commonjs": "^23.0.2",
+    "@rollup/plugin-node-resolve": "^15.0.1",
+    "eslint": "^8.26.0",
     "eslint-plugin-react": "^7.31.10",
     "prettier": "^2.7.1",
-    "rollup": "^2.79.1"
-  },
-  "peerDependencies": {
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1"
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "rollup": "^3.2.3"
   },
   "files": [
     "dist"
