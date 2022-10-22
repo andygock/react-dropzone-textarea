@@ -12,6 +12,7 @@ export default {
     resolve({ browser: true }),
     babel({
       exclude: 'node_modules/**',
+      babelHelpers: 'bundled',
     }),
     commonjs(),
   ],
