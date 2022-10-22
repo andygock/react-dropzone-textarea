@@ -6,6 +6,7 @@ It can be used with the generic HTML5 `<textarea>` element, or with any other Re
 
 ## Install
 
+- PNPM: `pnpm install react-dropzone-textarea`
 - Yarn: `yarn add react-dropzone-textarea`
 - NPM: `npm install react-dropzone-textarea`
 
