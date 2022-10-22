@@ -1,7 +1,7 @@
 {
   "name": "react-dropzone-textarea",
   "type": "module",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Use react-dropzone to load a text file into a textarea element",
   "main": "./dist/index.js",
   "scripts": {
