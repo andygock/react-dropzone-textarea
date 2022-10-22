@@ -34,9 +34,11 @@
     "eslint": "^8.26.0",
     "eslint-plugin-react": "^7.31.10",
     "prettier": "^2.7.1",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
     "rollup": "^3.2.3"
+  },
+  "peerDependencies": {
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
   },
   "files": [
     "dist"
