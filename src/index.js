@@ -137,6 +137,9 @@ DropzoneTextArea.propTypes = {
     PropTypes.string,
     PropTypes.node,
     PropTypes.func,
+
+    // native components, stateless components, stateful components, forward refs React.forwardRef, context providers/consumers
+    PropTypes.elementType
   ]),
   onError: PropTypes.func,
   children: PropTypes.oneOfType([
